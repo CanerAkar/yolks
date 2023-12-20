@@ -32,7 +32,7 @@ jobs:
       - uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: ${{ github.repository_owner }}
+          username: canerakar
           password: ${{ secrets.REGISTRY_TOKEN }}
       - uses: docker/build-push-action@v4
         with:
@@ -41,7 +41,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/pterodactyl/installers:${{ matrix.tag }}
+            ghcr.io/canerakar/installers:${{ matrix.tag }}
 
   pushAmd:
     name: "yolks:installers_amd:${{ matrix.tag }}"
@@ -60,7 +60,7 @@ jobs:
       - uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: ${{ github.repository_owner }}
+          username: canerakar
           password: ${{ secrets.REGISTRY_TOKEN }}
       - uses: docker/build-push-action@v4
         with:
@@ -69,4 +69,4 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/pterodactyl/installers:${{ matrix.tag }}
+            ghcr.io/canerakar/installers:${{ matrix.tag }}
