@@ -26,6 +26,7 @@ jobs:
           - freepapermc16
           - 17
           - freepapermc17
+          - afmc-17
           - 17j9
           - 18
           - freepapermc18
