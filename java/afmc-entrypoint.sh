@@ -34,7 +34,7 @@ export INTERNAL_IP
 cd /home/container || exit 1
 
 # Check if MSH Bin file exists
-if [ -f /home/container/msh_server.bin ]; then
+if [ ! -f /home/container/msh_server.bin ]; then
     echo -e "Downloading MSH msh_server.bin"
     curl -o /home/container/msh_server.bin https://msh.gekware.net/builds/egg/msh-linux-amd64.bin
 fi
@@ -42,13 +42,13 @@ fi
 chmod u+x ./msh_server.bin
 
 # Check if MSH Config file exists
-if [ -f /home/container/msh-config.json ]; then
+if [ ! -f /home/container/msh-config.json ]; then
     echo -e "Downloading MSH msh-config.json"
     curl -o /home/container/msh-config.json https://cdn.fps.ms/minecraft-config/msh-config.json
 fi
 
 # Check if EULA exists
-[ -f /home/container/eula.txt ] || { echo "EULA does not exist. Creating eula.txt"; echo "eula=false" > /home/container/eula.txt; }
+[ ! -f /home/container/eula.txt ] || { echo "EULA does not exist. Creating eula.txt"; echo "eula=false" > /home/container/eula.txt; }
 
 # Print Java version
 printf "\033[1m\033[33mcontainer@pterodactyl~ \033[0mjava -version\n"
