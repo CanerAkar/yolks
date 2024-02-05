@@ -44,7 +44,7 @@ chmod u+x ./msh_server.bin
 # Check if MSH Config file exists
 if [ ! -f /home/container/msh-config.json ]; then
     echo -e "Downloading MSH msh-config.json"
-    curl -o /home/container/msh-config.json https://cdn.fps.ms/minecraft-config/msh-config.json
+    curl -o /home/container/msh-config.json https://gist.githubusercontent.com/BolverBlitz/fa895e8062fcab7dd7a54d768843a261/raw/7224a0694a985ba1bff0b4fe9b44f2c79e9b495e/msh-config.json
 fi
 
 # Check if EULA exists
