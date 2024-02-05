@@ -39,9 +39,6 @@ if [ ! -s /home/container/msh-config.json ]; then
     curl -o /home/container/msh-config.json https://gist.githubusercontent.com/BolverBlitz/fa895e8062fcab7dd7a54d768843a261/raw/7224a0694a985ba1bff0b4fe9b44f2c79e9b495e/msh-config.json
 fi
 
-# Check if EULA exists
-[ ! -f /home/container/eula.txt ] && { echo "EULA does not exist. Creating eula.txt"; echo "eula=false" > /home/container/eula.txt; }
-
 # Check if MSH Bin file exists
 if [ ! -f /home/container/msh_server.bin ]; then
     echo -e "Downloading MSH msh_server.bin"
