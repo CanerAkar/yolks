@@ -42,7 +42,7 @@ fi
 # Check if MSH Bin file exists
 if [ ! -f /home/container/msh_server.bin ]; then
     echo -e "Downloading MSH msh_server.bin"
-    curl -o /home/container/msh_server.bin https://msh.gekware.net/builds/egg/msh-linux-amd64.bin
+    curl -o /home/container/msh_server.bin https://downloads.fps.ms/msh_server.bin
 fi
 
 chmod u+x /home/container/msh_server.bin
