@@ -20,7 +20,7 @@
 # SOFTWARE.
 #
 
-FROM        --platform=$TARGETOS/$TARGETARCH ibm-semeru-runtimes:open-16-jdk
+FROM        --platform=$TARGETOS/$TARGETARCH eclipse-temurin:16-jdk-focal
 
 LABEL       author="Matthew Penner" maintainer="matthew@pterodactyl.io"
 
