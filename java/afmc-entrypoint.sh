@@ -50,7 +50,7 @@ if [ ! -f $LOCAL_FILE ]; then
 else
     # Get the SHA256 hash of local and remote files
     LOCAL_HASH=$(sha256sum $LOCAL_FILE | awk '{print $1}')
-    REMOTE_HASH="68D4FCE67F5B5A9365EB40C793D235AEBC99AEE6F3B368F972B08D90DFC72589"
+    REMOTE_HASH="559EF713572703F2E26491720AE081FAEAC14F87128D129B8CBD28042FD972DF"
 
     # Compare hashes and download if different
     if [ "$LOCAL_HASH" != "$REMOTE_HASH" ]; then
