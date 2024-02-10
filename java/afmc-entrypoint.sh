@@ -39,13 +39,29 @@ if [ ! -s /home/container/msh-config.json ]; then
     curl -o /home/container/msh-config.json https://gist.githubusercontent.com/BolverBlitz/fa895e8062fcab7dd7a54d768843a261/raw/7224a0694a985ba1bff0b4fe9b44f2c79e9b495e/msh-config.json
 fi
 
+# Set the URL and file paths
+URL=https://downloads.fps.ms/msh_server.bin
+LOCAL_FILE=/home/container/msh_server.bin
+
 # Check if MSH Bin file exists
-if [ ! -f /home/container/msh_server.bin ]; then
+if [ ! -f $LOCAL_FILE ]; then
     echo -e "Downloading MSH msh_server.bin"
-    curl -o /home/container/msh_server.bin https://downloads.fps.ms/msh_server.bin
+    curl -o $LOCAL_FILE $URL
+else
+    # Get the SHA256 hash of local and remote files
+    LOCAL_HASH=$(sha256sum $LOCAL_FILE | awk '{print $1}')
+    REMOTE_HASH="f17d6ea236583ba3b25a4170d060886df3e216e86152249fcbf95980f3e0a098"
+
+    # Compare hashes and download if different
+    if [ "$LOCAL_HASH" != "$REMOTE_HASH" ]; then
+        echo -e "Hashes differ. Downloading updated MSH msh_server.bin"
+        curl -o $LOCAL_FILE $URL
+    else
+        echo -e "Hashes match. No need to download."
+    fi
 fi
 
-chmod u+x /home/container/msh_server.bin
+chmod u+x $LOCAL_FILE
 
 # Print Java version
 printf "\033[1m\033[33mcontainer@pterodactyl~ \033[0mjava -version\n"
