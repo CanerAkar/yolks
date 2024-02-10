@@ -39,9 +39,29 @@ if [ ! -s /home/container/msh-config.json ]; then
     curl -o /home/container/msh-config.json https://gist.githubusercontent.com/BolverBlitz/fa895e8062fcab7dd7a54d768843a261/raw/7224a0694a985ba1bff0b4fe9b44f2c79e9b495e/msh-config.json
 fi
 
-if [ ! -f /home/container/msh_server.bin ]; then
+# Set the URL and file paths
+URL=https://assets.fps.ms/msh_server.bin
+LOCAL_FILE=/home/container/msh_server.bin
+REMOTE_HASH_URL=https://assets.fps.ms/remote_hash.txt
+
+# Check if MSH Bin file exists
+if [ ! -f $LOCAL_FILE ]; then
     echo -e "Downloading MSH msh_server.bin"
-    curl -o /home/container/msh_server.bin https://msh.gekware.net/builds/egg/msh-linux-amd64.bin
+    curl -o $LOCAL_FILE $URL
+else
+    # Get the SHA256 hash of the local file
+    LOCAL_HASH=$(sha256sum $LOCAL_FILE | awk '{print $1}')
+
+    # Fetch the remote hash dynamically
+    REMOTE_HASH=$(curl -s $REMOTE_HASH_URL)
+
+    # Compare hashes and download if different
+    if [ "$LOCAL_HASH" != "$REMOTE_HASH" ]; then
+        echo -e "Hashes differ. Downloading updated MSH msh_server.bin"
+        curl -o $LOCAL_FILE $URL
+    else
+        echo -e "Hashes match. No need to download."
+    fi
 fi
 
 chmod u+x /home/container/msh_server.bin
