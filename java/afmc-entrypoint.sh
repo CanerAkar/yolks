@@ -50,10 +50,10 @@ if [ ! -f $LOCAL_FILE ]; then
     curl -o $LOCAL_FILE $URL
 else
     # Get the SHA256 hash of the local file
-    LOCAL_HASH=$(sha256sum $LOCAL_FILE | awk '{print $1}')
+    LOCAL_HASH=$(sha256sum $LOCAL_FILE | awk '{print $1}' | tr -d '[:space:]')  # Remove leading/trailing whitespaces
 
     # Fetch the remote hash dynamically
-    REMOTE_HASH=$(curl -s $REMOTE_HASH_URL)
+    REMOTE_HASH=$(curl -s $REMOTE_HASH_URL | tr -d '[:space:]')  # Remove leading/trailing whitespaces
 
     # Compare hashes and download if different
     if [ "$LOCAL_HASH" != "$REMOTE_HASH" ]; then
