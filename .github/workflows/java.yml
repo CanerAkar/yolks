@@ -44,6 +44,8 @@ jobs:
           - 19j9
           - afmc-19
           - afmc-19j9
+          - 21
+          - afmc-21
     steps:
       - uses: actions/checkout@v3
       - uses: docker/setup-qemu-action@v2
